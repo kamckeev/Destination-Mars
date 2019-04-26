@@ -1,0 +1,16 @@
+.back {
+    background-color: rgba(0,0,0,1.00);}
+    .navbar-brand {
+        font-weight: bold;
+        background-color: rgb(167, 49, 13);
+        font-size: 250%;
+        font-style:italic;
+    }
+    .container{
+        background-color: cornflowerblue;
+      }
+    .text {
+        float: right;
+        color: greenyellow;
+    }
+    
