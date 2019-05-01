@@ -1,0 +1,16 @@
+    .navbar-brand {
+        font-weight: bold;
+        background-color: rgb(167, 49, 13);
+        font-size: 250%;
+        font-style:italic;
+    }
+    .box.bg-lighten-2{
+        background-color: rgb(72, 72, 97);
+      }
+    .text {
+        float: right;
+        color: greenyellow;
+    }
+    .jumbotron {
+       background-color: paleturquoise !important;
+    }
