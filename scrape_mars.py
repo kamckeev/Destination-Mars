@@ -13,7 +13,7 @@ def scrape():
     time.sleep(1)
     html=browser.html
     soup=bs(html,'html.parser')
-    news_para=soup.find('div', class_='article_teaser_body').get_text()
+    news_p=soup.find('div', class_='article_teaser_body').get_text()
     news_title=soup.find('div', class_='content_title').get_text()
 
     #image scraping
@@ -39,8 +39,8 @@ def scrape():
     soup=bs(html, 'html.parser')
 
     mars_weather=soup.find('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')
-    unwanted=mars_weather.find('a')
-    unwanted.extract()
+    remove_twitterlink=mars_weather.find('a')
+    remove_twitterlink.extract()
     mars_weather=mars_weather.text
     
     #facts scraping
@@ -53,35 +53,37 @@ def scrape():
     facts_html=facts_html.replace('\n', '')
     facts_df
     
-    #hemisphere scraping
-    hemispheres=[]
-    #finding all image pages
-    url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    browser.visit(url)
-    time.sleep(1)
-    html=browser.html
-    soup=bs(html, 'html.parser')
-    pages=soup.find_all('div', class_='item')
-    #looping through pages
-    base_url='https://astrogeology.usgs.gov/maps/mars-viking-hemisphere-point-perspectives'
-    for page in pages:
-        page_url=page.find('a').get('href')
-        full_page_url=base_url+str(page_url)
-        browser.visit(full_page_url)
-        time.sleep(1)
-        html=browser.html
-        soup=bs(html,'html.parser')
-        image_url=soup.find('img',class_='wide-image').get('src')
-        full_image_url=base_url+str(image_url)
-        title=soup.find('h2',class_='title').get_text()
-        hemi_dict={}
-        hemi_dict['title']=title
-        hemi_dict['img_url']=full_image_url
-        hemispheres.append(hemi_dict)
+    # #hemisphere scraping
+    # hemispheres=[]
+    # #finding all image pages
+    # url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    # browser.visit(url)
+    # time.sleep(1)
+    # html=browser.html
+    # soup=bs(html, 'html.parser')
+    # pages=soup.find_all('div', class_='item')
+    # #looping through pages
+    # base_url='https://astrogeology.usgs.gov/'
+    # for page in pages:
+    #     page_url=page.find('a').get('href')
+    #     full_page_url=base_url+str(page_url)
+    #     browser.visit(full_page_url)
+    #     time.sleep(1)
+    #     html=browser.html
+    #     soup=bs(html,'html.parser')
+    #     image_url=soup.find('img',class_='wide-image').get('src')
+    #     full_image_url=base_url+str(image_url)
+    #     title=soup.find('h2',class_='title').get_text()
+    #     hemi_dict={}
+    #     hemi_dict['title']=title
+    #     hemi_dict['img_url']=full_image_url
+    #     hemispheres =hemispheres.append(hemi_dict)
+
+        
     #creating dictionary
     scrape_dict={}
     scrape_dict['latest_headline']=news_title
-    scrape_dict['latest_article']=news_para
+    scrape_dict['latest_article']=news_p
     scrape_dict['featured_image']=featured_image_url
     scrape_dict['weather']=mars_weather
     scrape_dict['facts_table']=facts_html
