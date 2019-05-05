@@ -4,13 +4,12 @@ from scrape_mars import scrape
 from scrape_mars import init_browser
 
 app=Flask(__name__)
-
 mongo=PyMongo(app,uri="mongodb://localhost:27017/mars_app")
 
 @app.route("/")
 def home():
     mars_data=mongo.db.mars.find_one()
-    return render_template("index2.html", mars=mars_data)
+    return render_template("index_mars.html", mars=mars_data)
 
 @app.route('/scrape')
 def data():

@@ -1,0 +1,10 @@
+    .box.bg-lighten-2{
+        background-color: rgb(68, 66, 155);
+      }
+    .jumbotron {
+       background-color: paleturquoise !important;
+    }
+    .arti{
+        font-color:white;
+        font-style: italic;
+    }

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index2
+    <title>index_mars
     </title>
-    <link rel="stylesheet" href="mars_style.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='mars_style.css')}}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
@@ -15,8 +15,8 @@
 <!--Jumbotron-->
     <div class= 'container-fluid'>
         <div class="jumbotron jumbotron-fluid text-center" style="margin:-50px">
-            <h1>Visit Mars!</h1>
-            <p>A fun destination, less than a lightyear away</p>   
+            <h1 style="font-style:italic" style="font-size: 400%" style= "font-weight: bold" style="font-family: veranda">Visit Mars!</h1>
+            <p>A fun destination, less than a lightyear away!</p>   
             <a class="btn btn-primary btn-lg" href="/scrape" role="button">Click here for updates!</a>
         </div>
     </div>
@@ -28,32 +28,31 @@
     <div class ="row">
         <div class="col-12">
             <div class= "box bg-lighten-2">
-                <h1 style="color:rgb(167, 87, 13)">Martian News</h1>
+                <h1 style="color:rgb(230, 95, 95)">The Latest in Martian News:</h1>
                 <hr>
-                <h2>The Latest in Martian News</h2>
-                <h3>{{mars.latest_headline}}</h3>
-                <p>{{mars.latest_article}}</p>  
-                    <p>
-                       <i class='fas fa-grav' style='font-size:48px;color:rgb(18, 100, 59)' border-style:'solid'></i>
-                    </p>
+                <h2 style="color:rgb(233, 241, 184)">{{mars.latest_headline}}</h2>
+                <p style="color: rgb(233, 241, 184)" style="font-style: italic">{{mars.latest_article}}</p>  
+                    
             </div>
         </div>
         <div class='row'>
             <div class='col-md-8'>
                 <h3>Image of the Day</h3>
-                <hr>
                 <div class='text-center'>
-                    <img src='{{mars.featured_image}}' alt='Featured Mars Image' class='mx-auto'>
+                    <img src='{{mars.featured_image}}' alt='Featured Mars Image' class='float-left' width="100%">
                 </div>
             </div>
             <div class='col-md-4'>
                 <div class='card'>
-                    <div class='card-body'>
+                    <div class='card-body' style='background=color:azure'>
                         <h3 class='card-title'>Current Weather on Mars</h3>
                         <p class='card-text'>{{mars.weather}}</p>
+                        <!-- <p>
+                            <i class='fab fa-grav' style='font-size:48px; color:rgb(80, 10, 68)'></i>
+                        </p> -->
                     </div>
                 </div>
-                <div class='mt-4'>
+                <div class='col md-4' style='background-color:azure'>
                     <h3>Mars Facts</h3>
                     {{mars.facts_table |safe}}
                 </div>
@@ -70,35 +69,36 @@
         </div> --> 
 
         <div class='row'>
-            <div class='col-md-6'>
-                <div class='text-center'>
-                    <h3>{{mars.hemispheres[0].title}}</h3>
-                    <img src="{{mars.hemispheres[0].img_url}}" alt='{{mars.hemispheres[0].title}}' class='img-thumbnail'>
-                </div>
-            </div>
-            <div class='col-md-6'>
-                <div class='bg-white text-center'>
-                    <h3>{{mars.hemispheres[1].title}}</h3>
-                    <img src="{{mars.hemispheres[1].img_url}}" alt='{{mars.hemispheres[1].title}}' class='img-thumbnail'>
-                </div>
-            </div>         
-        </div>
-            
-        <div class='row'>
-            <div class='col-md-6'>
-                    <div class='bg-white text-center'>
-                        <h3>{{mars.hemispheres[2].title}}</h3>
-                        <img src="{{mars.hemispheres[2].img_url}}" alt='{{mars.hemispheres[2].title}}' class='img-thumbnail'>
+            <!--carosoul?-->
+                <div class='col-md-6'>
+                    <div class='bg-black text-center'>
+                        <h3>{{mars.hemispheres[0].title}}</h3>
+                        <img src="{{mars.hemispheres[0].img_url}}" alt='{{mars.hemispheres[0].title}}' class='img-thumbnail'>
                     </div>
                 </div>
                 <div class='col-md-6'>
-                    <div class='bg-white text-center'>
-                        <h3>{{mars.hemispheres[3].title}}</h3>
-                        <img src="{{mars.hemispheres[3].img_url}}" alt='{{mars.hemispheres[3].title}}' class='img-thumbnail'>
+                    <div class='bg-black text-center'>
+                        <h3>{{mars.hemispheres[1].title}}</h3>
+                        <img src="{{mars.hemispheres[1].img_url}}" alt='{{mars.hemispheres[1].title}}' class='img-thumbnail'>
                     </div>
-                </div>       
+                </div>         
+            </div>
+                
+            <div class='row'>
+                <div class='col-md-6'>
+                        <div class='bg-black text-center'>
+                            <h3>{{mars.hemispheres[2].title}}</h3>
+                            <img src="{{mars.hemispheres[2].img_url}}" alt='{{mars.hemispheres[2].title}}' class='img-thumbnail'>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='bg-black text-center'>
+                            <h3>{{mars.hemispheres[3].title}}</h3>
+                            <img src="{{mars.hemispheres[3].img_url}}" alt='{{mars.hemispheres[3].title}}' class='img-thumbnail'>
+                        </div>
+                    </div>       
+            </div>
         </div>
-    </div>
 </body>
 </html>
     

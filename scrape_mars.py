@@ -54,30 +54,30 @@ def scrape():
     facts_df
     
     # #hemisphere scraping
-    # hemispheres=[]
-    # #finding all image pages
-    # url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    # browser.visit(url)
-    # time.sleep(1)
-    # html=browser.html
-    # soup=bs(html, 'html.parser')
-    # pages=soup.find_all('div', class_='item')
-    # #looping through pages
-    # base_url='https://astrogeology.usgs.gov/'
-    # for page in pages:
-    #     page_url=page.find('a').get('href')
-    #     full_page_url=base_url+str(page_url)
-    #     browser.visit(full_page_url)
-    #     time.sleep(1)
-    #     html=browser.html
-    #     soup=bs(html,'html.parser')
-    #     image_url=soup.find('img',class_='wide-image').get('src')
-    #     full_image_url=base_url+str(image_url)
-    #     title=soup.find('h2',class_='title').get_text()
-    #     hemi_dict={}
-    #     hemi_dict['title']=title
-    #     hemi_dict['img_url']=full_image_url
-    #     hemispheres =hemispheres.append(hemi_dict)
+    hemispheres=[]
+    #finding all image pages
+    url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    time.sleep(1)
+    html=browser.html
+    soup=bs(html, 'html.parser')
+    pages=soup.find_all('div', class_='item')
+    #looping through pages
+    base_url='https://astrogeology.usgs.gov/'
+    for page in pages:
+        pic_url=page.find('a').get('href')
+        full_page_url=base_url+str(pic_url)
+        browser.visit(full_page_url)
+        time.sleep(1)
+        html=browser.html
+        soup=bs(html,'html.parser')
+        image_url=soup.find('img',class_='wide-image').get('src')
+        full_image_url=base_url+str(image_url)
+        title=soup.find('h2',class_='title').get_text()
+        hemi_dict={}
+        hemi_dict['title']=title
+        hemi_dict['img_url']=full_image_url
+        hemispheres.append(hemi_dict)
 
         
     #creating dictionary
