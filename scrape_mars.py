@@ -1,6 +1,7 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import time
+import requests
 import pandas as pd
 
 def init_browser():
@@ -13,6 +14,8 @@ def scrape():
     time.sleep(1)
     html=browser.html
     soup=bs(html,'html.parser')
+    
+    #getting the news
     news_p=soup.find('div', class_='article_teaser_body').get_text()
     news_title=soup.find('div', class_='content_title').get_text()
 
@@ -30,22 +33,23 @@ def scrape():
     featured_image_url=base_url+featured_image
     
     #weather scraping
-    url='https://twitter.com/marswxreport?lang=en'
-    browser.visit(url)
+    weather_url='https://twitter.com/marswxreport?lang=en'
+    browser.visit(weather_url)
 
     time.sleep(1)
 
-    html=browser.html
-    soup=bs(html, 'html.parser')
+    html_weather=browser.html
+    soup=bs(html_weather, 'html.parser')
 
     mars_weather=soup.find('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')
     remove_twitterlink=mars_weather.find('a')
     remove_twitterlink.extract()
     mars_weather=mars_weather.text
+
     
     #facts scraping
-    url='https://space-facts.com/mars/'
-    facts_table = pd.read_html(url)
+    facts_url='https://space-facts.com/mars/'
+    facts_table = pd.read_html(facts_url)
     facts_df=facts_table[0]
     facts_df=facts_df.rename(columns={0:'Description',1:'Value'})
     facts_df=facts_df.set_index("Description")
